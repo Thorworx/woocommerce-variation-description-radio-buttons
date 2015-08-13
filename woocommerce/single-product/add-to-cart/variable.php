@@ -56,9 +56,8 @@ global $product, $post;
 								if ( ! in_array( $term->slug, $options ) ) {
 									continue;
 								}
-
-								echo '<div class="wvdrb-one-third"><input type="radio" value="' .esc_attr( $term->slug ) . '" ' . checked( sanitize_title( $selected_value ), sanitize_title( $term->slug ), false ) . ' id="'. esc_attr( sanitize_title($name) ) .'" name="attribute_'. sanitize_title($name) .'"> &nbsp; &nbsp; ' . apply_filters( 'woocommerce_variation_option_name', $term->name ) . '</div><div class="wvdrb-two-thirds">' . $term->description . '</div><br />';
-
+								// assign unique IDs to inputs and name attributes and added labels to facilitate styling of the buttons
+								echo '<div class="wvdrb-one-third"><input type="radio" value="' .esc_attr( $term->slug ) . '" ' . checked( sanitize_title( $selected_value ), sanitize_title( $term->slug ), false ) . ' id="'. esc_attr( sanitize_title($name) ) .'-' .esc_attr( $term->slug ) . '" name="attribute_'. sanitize_title($name) .'"> &nbsp; &nbsp; ' . apply_filters( 'woocommerce_variation_option_name', $term->name ) . '</div><div class="wvdrb-two-thirds">' . $term->description . '</div>';
 							}
 
 						} else {
@@ -71,8 +70,8 @@ global $product, $post;
 								// We then use the variation_id to get the value from _isa_woo_variation_desc
 								$var_description = get_post_meta( $var_id, '_isa_woo_variation_desc', true);
 								
-								echo '<div class="wvdrb-one-third"><input type="radio" value="' .esc_attr( sanitize_title( $option ) ) . '" ' . checked( sanitize_title( $selected_value ), sanitize_title( $option ), false ) . ' id="'. esc_attr( sanitize_title($name) ) .'" name="attribute_'. sanitize_title($name) .'"> &nbsp; &nbsp; ' . apply_filters( 'woocommerce_variation_option_name', $option ) . '</div><div class="wvdrb-two-thirds">' . $var_description . '</div><br />';
-
+								// assign unique IDs to inputs and name attributes and added labels to facilitate styling of the buttons
+								echo '<div class="wvdrb-one-third"><input type="radio" value="' .esc_attr( sanitize_title( $option ) ) . '" ' . checked( sanitize_title( $selected_value ), sanitize_title( $option ), false ) . ' id="'. esc_attr( sanitize_title($name) ) .'-' .esc_attr( sanitize_title( $option ) ) . '" name="attribute_'. sanitize_title($name) .'"> &nbsp; &nbsp; ' . apply_filters( 'woocommerce_variation_option_name', $option ) . '</div><div class="wvdrb-two-thirds">' . $var_description . '</div>';
 							}
 						}
 					}
